@@ -30,6 +30,9 @@ install_if_missing tar
 install_if_missing apt-transport-https  # Useful for adding repos securely
 install_if_missing python3  # Ensure Python is installed
 install_if_missing python3-pip  # Optionally, ensure pip is installed for Python
+install_if_missing git
+install_if_missing jq
+install_if_missing libicu70
 
 # Create a directory for the agent
 mkdir -p $AGENT_DIR
