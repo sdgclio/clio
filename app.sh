@@ -27,8 +27,9 @@ install_if_missing() {
 # Ensure necessary packages are installed
 install_if_missing curl
 install_if_missing tar
-install_if_missing sudo  # Ensure sudo is present for script running without root
 install_if_missing apt-transport-https  # Useful for adding repos securely
+install_if_missing python3  # Ensure Python is installed
+install_if_missing python3-pip  # Optionally, ensure pip is installed for Python
 
 # Create a directory for the agent
 mkdir -p $AGENT_DIR
