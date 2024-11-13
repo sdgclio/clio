@@ -13,6 +13,23 @@ AGENT_DIR="/azp/agent"
 # Exit on any failure
 set -e
 
+# Function to install a package if not already installed
+install_if_missing() {
+  if ! dpkg -s "$1" >/dev/null 2>&1; then
+    echo "Installing $1..."
+    sudo apt-get update -y
+    sudo apt-get install -y "$1"
+  else
+    echo "$1 is already installed."
+  fi
+}
+
+# Ensure necessary packages are installed
+install_if_missing curl
+install_if_missing tar
+install_if_missing sudo  # Ensure sudo is present for script running without root
+install_if_missing apt-transport-https  # Useful for adding repos securely
+
 # Create a directory for the agent
 mkdir -p $AGENT_DIR
 cd $AGENT_DIR
@@ -40,8 +57,8 @@ rm -f agent.tar.gz
 
 echo "Running Azure Pipelines agent..."
 # Start the agent
-./svc.sh install
-./svc.sh start
+sudo ./svc.sh install
+sudo ./svc.sh start
 
 # Wait for the agent process to exit
 tail -f /dev/null
