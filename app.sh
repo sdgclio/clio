@@ -34,6 +34,9 @@ install_if_missing git
 install_if_missing jq
 install_if_missing libicu70
 
+sudo useradd -m -d /home/$AZP_AGENT_NAME $AZP_AGENT_NAME
+sudo chown -R $AZP_AGENT_NAME:$AZP_AGENT_NAME /azp /home/$AZP_AGENT_NAME
+
 # Create a directory for the agent
 mkdir -p $AGENT_DIR
 cd $AGENT_DIR
