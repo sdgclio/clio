@@ -17,7 +17,7 @@ set -e
 install_if_missing() {
   if ! dpkg -s "$1" >/dev/null 2>&1; then
     echo "Installing $1..."
-    sudo apt-get update -y
+    # sudo apt-get update -y
     sudo apt-get install -y "$1"
   else
     echo "$1 is already installed."
